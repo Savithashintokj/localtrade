@@ -15,13 +15,21 @@ To prevent this, the project POM contains empty overrides for these elements.
 If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
 
 POSTGRES DB CREATION:
+
 goto cmd
+
 psql -U postgres
+
 CREATE USER localtrade WITH PASSWORD 'localtrade';
+
 CREATE DATABASE localtrade OWNER localtrade;
+
 GRANT ALL PRIVILEGES ON DATABASE localtrade TO localtrade;
+
 \q
+
 psql -U localtrade -d localtrade
+
 CREATE TABLE users (
 id SERIAL PRIMARY KEY,
 first_name VARCHAR(100) NOT NULL,
@@ -30,4 +38,6 @@ mobile_number VARCHAR(20) NOT NULL UNIQUE,
 otp VARCHAR(10),
 verified BOOLEAN DEFAULT FALSE
 );
+
 select * from users;
+
