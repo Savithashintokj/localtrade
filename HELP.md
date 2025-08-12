@@ -58,3 +58,193 @@ CONSTRAINT fk_user FOREIGN KEY (created_by_user)
 REFERENCES users(id) ON DELETE CASCADE
 );
 select * from traders;
+
+
+postman collections
+{
+"info": {
+"name": "Localtrade API",
+"_postman_id": "f9d30e9c-1234-5678-abcd-123456789abc",
+"description": "Test collection for TraderController + User Registration + OTP Verification",
+"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+},
+"item": [
+{
+"name": "Register User",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Content-Type",
+"value": "application/json"
+}
+],
+"body": {
+"mode": "raw",
+"raw": "{\n  \"firstname\": \"Ajay\",\n  \"lastname\": \"Kumar\",\n  \"mobileNumber\": \"9876543210\"\n}"
+},
+"url": {
+"raw": "http://localhost:8080/api/users/register",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "users", "register"]
+}
+},
+"response": []
+},
+{
+"name": "Verify OTP",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Content-Type",
+"value": "application/json"
+}
+],
+"body": {
+"mode": "raw",
+"raw": "{\n  \"mobileNumber\": \"9876543210\",\n  \"otp\": \"123456\"\n}"
+},
+"url": {
+"raw": "http://localhost:8080/api/users/verify-otp",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "users", "verify-otp"]
+}
+},
+"response": []
+},
+{
+"name": "Create Trader",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Content-Type",
+"value": "application/json"
+}
+],
+"body": {
+"mode": "raw",
+"raw": "{\n  \"name\": \"John Doe\",\n  \"category\": \"Plumber\",\n  \"phoneNumber\": \"9876543210\",\n  \"address\": \"123 Street\",\n  \"city\": \"Mumbai\",\n  \"state\": \"Maharashtra\",\n  \"pincode\": \"400001\",\n  \"description\": \"Experienced plumber\",\n  \"companyName\": \"John's Plumbing\",\n  \"createdByUserId\": 1\n}"
+},
+"url": {
+"raw": "http://localhost:8080/api/traders",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "traders"]
+}
+},
+"response": []
+},
+{
+"name": "Get All Traders",
+"request": {
+"method": "GET",
+"header": [],
+"url": {
+"raw": "http://localhost:8080/api/traders",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "traders"]
+}
+},
+"response": []
+},
+{
+"name": "Get Trader by ID",
+"request": {
+"method": "GET",
+"header": [],
+"url": {
+"raw": "http://localhost:8080/api/traders/1",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "traders", "1"]
+}
+},
+"response": []
+},
+{
+"name": "Update Trader",
+"request": {
+"method": "PUT",
+"header": [
+{
+"key": "Content-Type",
+"value": "application/json"
+}
+],
+"body": {
+"mode": "raw",
+"raw": "{\n  \"name\": \"John Doe Updated\",\n  \"category\": \"Electrician\",\n  \"phoneNumber\": \"9876543210\",\n  \"address\": \"456 New Street\",\n  \"city\": \"Mumbai\",\n  \"state\": \"Maharashtra\",\n  \"pincode\": \"400001\",\n  \"description\": \"Certified electrician\",\n  \"companyName\": \"John's Electricals\",\n  \"createdByUserId\": 1\n}"
+},
+"url": {
+"raw": "http://localhost:8080/api/traders/1",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "traders", "1"]
+}
+},
+"response": []
+},
+{
+"name": "Delete Trader",
+"request": {
+"method": "DELETE",
+"header": [],
+"url": {
+"raw": "http://localhost:8080/api/traders/1",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "traders", "1"]
+}
+},
+"response": []
+},
+{
+"name": "Search Traders by Pincode",
+"request": {
+"method": "GET",
+"header": [],
+"url": {
+"raw": "http://localhost:8080/api/traders/search?pincode=400001",
+"protocol": "http",
+"host": ["localhost"],
+"port": "8080",
+"path": ["api", "traders", "search"],
+"query": [
+{
+"key": "pincode",
+"value": "400001"
+}
+]
+}
+},
+"response": []
+}
+]
+}
+
+
+How to import this collection:
+
+Copy the above JSON.
+
+Open Postman.
+
+Click Import (top left).
+
+Select Raw text tab.
+
+Paste the JSON.
+
+Click Import.
