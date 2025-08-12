@@ -1,0 +1,98 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white; /* Set background to white */
+    color: #333;
+    margin: 20px;
+    padding: 20px;
+}
+
+/* Center and Style Form */
+form {
+    background: white;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Labels & Inputs Side by Side */
+.label-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 10px; /* Space between label and input */
+    white-space: nowrap; /* Prevents wrapping */
+}
+
+input, textarea {
+    flex: 1; /* Allows inputs to take up remaining space */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Button Styling */
+button {
+    background: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Ensures spacing from image preview */
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background: #0056b3;
+}
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.center-link {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Image Preview Styling */
+#imagePreview {
+    max-width: 100%;
+    max-height: 120px; /* Smaller image preview */
+    margin-top: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: none;
+}
+
+/* Navigation Links */
+a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #0056b3;
+}
