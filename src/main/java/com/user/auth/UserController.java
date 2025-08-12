@@ -1,5 +1,8 @@
 package com.user.auth;
 
+
+import com.user.auth.dto.OtpVerificationRequest;
+import com.user.auth.dto.UserRegistrationRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
