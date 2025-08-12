@@ -41,3 +41,20 @@ verified BOOLEAN DEFAULT FALSE
 
 select * from users;
 
+CREATE TABLE traders (
+id SERIAL PRIMARY KEY,
+name VARCHAR(150) NOT NULL,
+category VARCHAR(50) NOT NULL,
+phone_number VARCHAR(20),
+address TEXT,
+city VARCHAR(100),
+state VARCHAR(100),
+pincode VARCHAR(10),
+description TEXT,
+company_name VARCHAR(150),
+created_by_user BIGINT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT fk_user FOREIGN KEY (created_by_user)
+REFERENCES users(id) ON DELETE CASCADE
+);
+select * from traders;
