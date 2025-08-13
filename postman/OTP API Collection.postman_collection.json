@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "0a370582-10af-4edd-99e2-dc3bc43d75f0",
+		"name": "OTP API Collection",
+		"description": "Endpoints for OTP generation and verification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Generate OTP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/otp/generate?mobileNumber=9876543210",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"otp",
+						"generate"
+					],
+					"query": [
+						{
+							"key": "mobileNumber",
+							"value": "9876543210"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 1,\n  \"mobileNumber\": 9876543210,\n  \"otpCode\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/otp/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"otp",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
