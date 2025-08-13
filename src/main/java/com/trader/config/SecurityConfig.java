@@ -1,2 +1,4 @@
-package com.trader.config;public class SecurityConfig {
+package com.trader.config;
+
+public class SecurityConfig {
 }
