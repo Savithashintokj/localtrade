@@ -46,7 +46,7 @@ CREATE TABLE traders (
 CREATE TABLE otp_verification (
   otp_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   user_id BIGINT NOT NULL,
-  mobile_number BIGINT NOT NULL UNIQUE,
+  mobile_number BIGINT NOT NULL,
   otp_code VARCHAR(6) NOT NULL,
   otp_status VARCHAR(20),
   verification_status VARCHAR(20),
@@ -54,3 +54,4 @@ CREATE TABLE otp_verification (
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
   CHECK (mobile_number >= 1000000000 AND mobile_number <= 9999999999)
 );
+ALTER TABLE otp_verification DROP INDEX mobile_number;
