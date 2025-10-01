@@ -1,8 +1,8 @@
 package com.trader.entity;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "otp_verification")
 public class OtpVerification {
@@ -22,7 +22,7 @@ public class OtpVerification {
     @Column(name = "otp_status", length = 20)
     private String otpStatus;
 
-    @Column(name = "mobile_number", nullable = false, unique = true)
+    @Column(name = "mobile_number", nullable = false)
     private Long mobileNumber;
 
     @Column(name = "verification_status", length = 20)
@@ -31,6 +31,12 @@ public class OtpVerification {
     @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    // Getters and setters
     public Long getOtpId() {
         return otpId;
     }
@@ -73,10 +79,6 @@ public class OtpVerification {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = LocalDateTime.now();
     }
 
     public Long getMobileNumber() {

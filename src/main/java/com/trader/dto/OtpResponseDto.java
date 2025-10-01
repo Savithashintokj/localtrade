@@ -9,6 +9,20 @@ public class OtpResponseDto {
     private String verificationStatus;
     private LocalDateTime createdAt;
 
+    private String otpCode;
+
+
+    public String getOtpCode() {
+        return otpCode;
+    }
+
+    public void setOtpCode(String otpCode) {
+        this.otpCode = otpCode;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
     // getters & setters
 
     public LocalDateTime getCreatedAt() {

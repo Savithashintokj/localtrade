@@ -8,6 +8,7 @@ import com.trader.repository.OtpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -22,7 +23,6 @@ public class OtpService {
     public OtpResponseDto generateOtp(Long mobileNumber) {
         User user = userService.getUserByMobile(mobileNumber);
 
-        // Generate 6-digit OTP
         String otp = String.format("%06d", new Random().nextInt(999999));
 
         OtpVerification verification = new OtpVerification();
@@ -33,15 +33,18 @@ public class OtpService {
         verification.setVerificationStatus("PENDING");
 
         OtpVerification saved = otpRepository.save(verification);
-
         return mapToDto(saved);
     }
 
-    public OtpResponseDto verifyOtp(OtpRequestDto dto) {
+    public boolean verifyOtp(OtpRequestDto dto) {
         User user = userService.getUserByMobile(dto.getMobileNumber());
 
-        OtpVerification otpVerification = otpRepository.findByUser(user)
-                .orElseThrow(() -> new RuntimeException("OTP not found for this user"));
+        Optional<OtpVerification> latestOtp = otpRepository.findTopByUserOrderByCreatedAtDesc(user);
+        if (latestOtp.isEmpty()) {
+            throw new RuntimeException("OTP not found for this user");
+        }
+
+        OtpVerification otpVerification = latestOtp.get();
 
         if (!otpVerification.getOtpCode().equals(dto.getOtpCode())) {
             otpVerification.setVerificationStatus("FAILED");
@@ -51,8 +54,7 @@ public class OtpService {
 
         otpVerification.setVerificationStatus("VERIFIED");
         otpRepository.save(otpVerification);
-
-        return mapToDto(otpVerification);
+        return true;
     }
 
     private OtpResponseDto mapToDto(OtpVerification verification) {
@@ -62,7 +64,8 @@ public class OtpService {
         dto.setMobileNumber(verification.getMobileNumber());
         dto.setOtpStatus(verification.getOtpStatus());
         dto.setVerificationStatus(verification.getVerificationStatus());
+        dto.setCreatedAt(verification.getCreatedAt());
+        dto.setOtpCode(verification.getOtpCode());
         return dto;
     }
 }
-
